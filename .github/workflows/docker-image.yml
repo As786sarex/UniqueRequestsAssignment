@@ -22,6 +22,6 @@ jobs:
 
     - name: 'Build Inventory Image'
       run: |
-        docker build . --tag ghcr.io/${{ github.actor }}/verve-unique-request-assignment:latest
-        docker push ghcr.io/${{ github.actor }}/verve-unique-request-assignment:latest
+        docker build . --tag ghcr.io/as786sarex/verve-unique-request-assignment:latest
+        docker push ghcr.io/as786sarex/verve-unique-request-assignment:latest
 
