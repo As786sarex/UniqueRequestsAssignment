@@ -11,6 +11,8 @@ COPY src ./src
 
 COPY gradle ./gradle
 
+RUN chmod +x ./gradlew
+
 # Run the build
 RUN ./gradlew wrapper clean build
 
