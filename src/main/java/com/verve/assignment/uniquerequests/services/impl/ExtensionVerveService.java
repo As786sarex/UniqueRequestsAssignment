@@ -1,7 +1,6 @@
 package com.verve.assignment.uniquerequests.services.impl;
 
 
-import com.verve.assignment.uniquerequests.exceptions.NotImplementedException;
 import com.verve.assignment.uniquerequests.exceptions.RetryableException;
 import com.verve.assignment.uniquerequests.models.SendCountRequestModel;
 import com.verve.assignment.uniquerequests.repositories.VerveDataRepository;
@@ -10,19 +9,10 @@ import com.verve.assignment.uniquerequests.utils.UniqueCountLoggerUtil;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
 
 @Slf4j
 @Service

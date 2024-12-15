@@ -18,17 +18,9 @@ public class DependencyConfiguration {
     public static final String REDIS_HOST_KEY = "SPRING_REDIS_HOST";
     public static final String REDIS_PORT_KEY = "SPRING_REDIS_PORT";
 
-    private ClientHttpRequestFactory getClientHttpRequestFactory() {
-        int timeout = 5000;
-        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
-                = new HttpComponentsClientHttpRequestFactory();
-        clientHttpRequestFactory.setConnectTimeout(timeout);
-        return clientHttpRequestFactory;
-    }
-
     @Bean
-    public RestTemplate httpClient() {
-        return new RestTemplate(getClientHttpRequestFactory());
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Bean
