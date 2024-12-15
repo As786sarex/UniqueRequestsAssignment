@@ -1,12 +1,11 @@
 package com.verve.assignment.uniquerequests.services;
 
-import com.verve.assignment.uniquerequests.models.AcceptRequestModel;
-
 public interface VerveService {
 
-    String processAcceptRequest(final int id, final String endpoint);
+    String REQUEST_TEMPLATE = "%s?count=%d";
 
-    default String processAcceptRequest(final AcceptRequestModel acceptRequestModel) {
-        return processAcceptRequest(acceptRequestModel.getId(), acceptRequestModel.getEndpoint());
-    }
+
+    void processAcceptRequest(final int id, final String endpoint);
+
+    void persistUniqueRequest();
 }

@@ -2,7 +2,7 @@ package com.verve.assignment.uniquerequests.repositories;
 
 public interface VerveDataRepository {
 
-    boolean upsert(int key);
+    void upsert(int key);
 
     long getUniqueCount();
 

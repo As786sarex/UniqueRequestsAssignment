@@ -1,0 +1,27 @@
+<configuration>
+    <!-- Console appender for the default logger -->
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File appender for the CountLogger -->
+    <appender name="CountFileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>logs/count.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger for unique count logging -->
+    <logger name="CountLogger" level="INFO" additivity="false">
+        <appender-ref ref="CountFileAppender" />
+    </logger>
+
+    <!-- Root logger logs to console -->
+    <root level="INFO">
+        <appender-ref ref="ConsoleAppender" />
+    </root>
+</configuration>

@@ -1,3 +1,7 @@
 spring:
   application:
-    name: UniqueRequestsAssignment
+    name: UniqueRequestsAssignmentBasic
+
+logging:
+  level:
+    root: INFO

@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class AcceptRequestModel {
-    private Integer id;
-    private String endpoint;
+@AllArgsConstructor
+@Builder
+public class SendCountRequestModel {
+    private Long count;
 }

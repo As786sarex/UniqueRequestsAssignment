@@ -22,14 +22,13 @@ public class RedisVerveDataRepository implements VerveDataRepository {
 
 
     @Override
-    public boolean upsert(int id) {
+    public void upsert(int id) {
         String key = "uniqueId:" + id;
         Boolean isNew = redisTemplate.opsForValue().setIfAbsent(key, 1L, Duration.ofMinutes(1));
         boolean isUnique = Boolean.TRUE.equals(isNew);
         if (isUnique) {
             redisTemplate.opsForValue().increment(COUNT_KEY);
         }
-        return isUnique;
     }
 
     @Override

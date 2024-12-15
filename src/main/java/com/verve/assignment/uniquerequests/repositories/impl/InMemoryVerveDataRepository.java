@@ -17,8 +17,8 @@ public class InMemoryVerveDataRepository implements VerveDataRepository {
     }
 
     @Override
-    public boolean upsert(final int id) {
-        return Boolean.TRUE.equals(uniqueIds.putIfAbsent(id, true));
+    public void upsert(final int id) {
+        Boolean putIfAbsent = uniqueIds.putIfAbsent(id, true);
     }
 
     @Override
