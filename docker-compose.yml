@@ -2,10 +2,7 @@ version: '3.9'
 
 services:
   spring-boot-app:
-    image: verve-unique-request-assignment
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/as786sarex/verve-unique-request-assignment:latest
     ports:
       - "8080:8080"
     depends_on:

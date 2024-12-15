@@ -1,5 +1,23 @@
 # Thought Process and Design
 
+## How to run this application
+
+### Prerequisites
+1. Docker Desktop
+
+### Steps to run
+
+1. Clone this GitHub repository using the following command.
+```bash
+  git clone git@github.com:As786sarex/UniqueRequestsAssignment.git
+```
+2. Run application using docker compose.
+```bash
+  docker-compose up --build
+```
+
+---
+
 When planning the solution, I focused on ensuring the application is easy to scale, reliable, and capable of handling
 high traffic. The goal was to meet all the requirements while keeping the design straightforward and efficient. Here's
 how I approached it:
