@@ -19,7 +19,7 @@ public class UniqueRequestScheduler {
         this.verveService = verveService;
     }
 
-    @Scheduled(fixedRate = 6000)
+    @Scheduled(fixedRate = 60000)
     public void persistUniqueRequestCount() {
         log.info("Persisting unique request count to disk at timestamp: {}", LocalDateTime.now());
         verveService.persistUniqueRequest();

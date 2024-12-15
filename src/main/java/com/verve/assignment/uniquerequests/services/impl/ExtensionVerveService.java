@@ -5,14 +5,16 @@ import com.verve.assignment.uniquerequests.exceptions.RetryableException;
 import com.verve.assignment.uniquerequests.models.SendCountRequestModel;
 import com.verve.assignment.uniquerequests.repositories.VerveDataRepository;
 import com.verve.assignment.uniquerequests.services.VerveService;
-import com.verve.assignment.uniquerequests.utils.UniqueCountLoggerUtil;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import static com.verve.assignment.uniquerequests.configurations.DependencyConfiguration.VERVE_COUNT_TOPIC_NAME_KEY;
 
 @Slf4j
 @Service
@@ -25,10 +27,15 @@ public class ExtensionVerveService implements VerveService {
     @NonNull
     private final RestTemplate restTemplate;
 
+    @NonNull
+    public final KafkaTemplate<String, SendCountRequestModel> kafkaTemplate;
+
     public ExtensionVerveService(@NonNull final VerveDataRepository verveDataRepository,
-                                 @NonNull RestTemplate restTemplate) {
+                                 @NonNull RestTemplate restTemplate,
+                                 @NonNull KafkaTemplate<String, SendCountRequestModel> kafkaTemplate) {
         this.verveDataRepository = verveDataRepository;
         this.restTemplate = restTemplate;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     @Override
@@ -55,6 +62,15 @@ public class ExtensionVerveService implements VerveService {
     @Override
     public void persistUniqueRequest() {
         long fetched = verveDataRepository.fetchAndReset();
-        UniqueCountLoggerUtil.logCount(fetched);
+        final SendCountRequestModel requestModel = SendCountRequestModel.builder()
+                .count(fetched).build();
+        kafkaTemplate.send(System.getenv(VERVE_COUNT_TOPIC_NAME_KEY), requestModel)
+                .whenComplete((result, ex) -> {
+                    if (ex == null) {
+                        log.info("Sent message=[{}] with offset=[{}]", requestModel, result.getRecordMetadata().offset());
+                    } else {
+                        log.error("Unable to send message=[{}] due to : ", requestModel, ex);
+                    }
+                });
     }
 }

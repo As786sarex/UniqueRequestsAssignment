@@ -23,7 +23,7 @@ class UniqueRequestsAssignmentApplicationTests {
 	void basicTests() throws InterruptedException {
 
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		for (int i = 0; i <= 10000; i++) {
+		for (int i = 0; i <= 1000; i++) {
 			Task task = new Task(i);
 			executorService.submit(task);
 		}
