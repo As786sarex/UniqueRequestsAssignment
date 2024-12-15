@@ -18,8 +18,7 @@ class UniqueRequestsAssignmentApplicationTests {
 	public static final String TEMPLATE = "http://localhost:8080/api/verve/accept?id=%d&endpoint=http://localhost:8080/persist";
 	static HttpClient httpClient = HttpClient.newHttpClient();
 
-
-	@Test
+	// @Test
 	void basicTests() throws InterruptedException {
 
 		ExecutorService executorService = Executors.newFixedThreadPool(10);

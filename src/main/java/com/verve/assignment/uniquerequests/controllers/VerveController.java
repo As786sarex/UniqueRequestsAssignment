@@ -32,16 +32,4 @@ public class VerveController {
             return ResponseEntity.ok(FAILED_RESPONSE);
         }
     }
-
-    @GetMapping("/persist")
-    public ResponseEntity<String> persist(@RequestParam final int count) {
-        log.info("Received get request with count: {}", count);
-        return ResponseEntity.ok(String.valueOf(count));
-    }
-
-    @PostMapping("/persist")
-    public ResponseEntity<String> persist(@NonNull @RequestBody final SendCountRequestModel requestModel) {
-        log.info("Received post request with count: {}", requestModel.getCount());
-        return ResponseEntity.ok(String.valueOf(requestModel.getCount()));
-    }
 }
