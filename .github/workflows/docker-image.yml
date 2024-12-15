@@ -21,3 +21,8 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.PACKAGE_TOKEN }}
+    - name: 'Build Inventory Image'
+      run: |
+        docker build . --tag ghcr.io/${{ github.actor }}/verve-unique-request-assignment:latest
+        docker push ghcr.io/${{ github.actor }}/verve-unique-request-assignment:latest
+
